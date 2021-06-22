@@ -89,7 +89,7 @@ paymentSelect.addEventListener("change", (e) => {
 
 // Form validation functions
 const isNameValid = function (name) {
-  if (/^[a-z]+ [a-z]+$/i.test(name)) {
+  if (/^[a-z]+$/i.test(name.trim())) {
     nameInput.parentElement.classList.add("valid")
     nameInput.parentElement.classList.remove("not-valid")
     nameInput.parentElement.lastElementChild.style.display = "none"
@@ -98,10 +98,10 @@ const isNameValid = function (name) {
     nameInput.parentElement.classList.add("not-valid")
     nameInput.parentElement.lastElementChild.style.display = "inline"
   }
-  return /^[a-z]+ [a-z]+$/i.test(name)
+  return /^[a-z]+$/i.test(name.trim())
 }
 const isEmailValid = function (email) {
-  if (/^[^@]+@[^@.]+\.[a-z]+$/i.test(email)) {
+  if (/^[^@]+@[^@.]+\.[a-z]+$/i.test(email.trim())) {
     emailInput.parentElement.classList.add("valid")
     emailInput.parentElement.classList.remove("not-valid")
     emailInput.parentElement.lastElementChild.style.display = "none"
@@ -110,7 +110,7 @@ const isEmailValid = function (email) {
     emailInput.parentElement.classList.add("not-valid")
     emailInput.parentElement.lastElementChild.style.display = "inline"
   }
-  return /^[^@]+@[^@.]+\.[a-z]+$/i.test(email)
+  return /^[^@]+@[^@.]+\.[a-z]+$/i.test(email.trim())
 }
 const isActivitiesSelected = function (total) {
   if (total > 0) {
@@ -178,13 +178,24 @@ form.addEventListener("submit", (e) => {
   isCreditCardNumValid(creditcardInput.value)
   isZipCodeValid(zipInput.value)
   isCVVValid(cvvInput.value)
-  if (
-    !isNameValid(nameInput.value) ||
-    !isEmailValid(emailInput.value) ||
-    !isActivitiesSelected(total) ||
-    !isCreditCardValid()
-  ) {
-    e.preventDefault()
+
+  if (paymentSelect.value === "credit-card") {
+    if (
+      !isNameValid(nameInput.value) ||
+      !isEmailValid(emailInput.value) ||
+      !isActivitiesSelected(total) ||
+      !isCreditCardValid()
+    ) {
+      e.preventDefault()
+    }
+  } else {
+    if (
+      !isNameValid(nameInput.value) ||
+      !isEmailValid(emailInput.value) ||
+      !isActivitiesSelected(total)
+    ) {
+      e.preventDefault()
+    }
   }
 })
 
