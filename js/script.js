@@ -11,7 +11,6 @@ const activitiesFieldset = document.querySelector("#activities")
 const activitiesCheckboxs = document.querySelectorAll(
   "#activities-box input[type=checkbox]"
 )
-console.log(activitiesCheckboxs[2])
 const activitiesCost = document.querySelector("#activities-cost")
 const paymentSelect = document.querySelector("#payment")
 const paymentOptions = paymentSelect.children
@@ -40,6 +39,9 @@ jobSelect.addEventListener("change", (e) => {
 
 // T-shirt info section
 shirtDesignSelect.addEventListener("change", (e) => {
+  if (!shirtColorSelect.disabled) {
+    shirtColorSelect.value = "Select a design theme above"
+  }
   shirtColorSelect.disabled = false
   const colorOption = e.target.value
   for (let i = 0; i < shirtColorOptions.length; i++) {
@@ -88,75 +90,75 @@ paymentSelect.addEventListener("change", (e) => {
 // Form validation functions
 const isNameValid = function (name) {
   if (/^[a-z]+ [a-z]+$/i.test(name)) {
-    nameInput.parentElement.classList.add(".valid")
-    nameInput.parentElement.classList.remove(".not-valid")
+    nameInput.parentElement.classList.add("valid")
+    nameInput.parentElement.classList.remove("not-valid")
     nameInput.parentElement.lastElementChild.style.display = "none"
   } else {
-    nameInput.parentElement.classList.remove(".valid")
-    nameInput.parentElement.classList.add(".not-valid")
+    nameInput.parentElement.classList.remove("valid")
+    nameInput.parentElement.classList.add("not-valid")
     nameInput.parentElement.lastElementChild.style.display = "inline"
   }
   return /^[a-z]+ [a-z]+$/i.test(name)
 }
 const isEmailValid = function (email) {
   if (/^[^@]+@[^@.]+\.[a-z]+$/i.test(email)) {
-    emailInput.parentElement.classList.add(".valid")
-    emailInput.parentElement.classList.remove(".not-valid")
+    emailInput.parentElement.classList.add("valid")
+    emailInput.parentElement.classList.remove("not-valid")
     emailInput.parentElement.lastElementChild.style.display = "none"
   } else {
-    emailInput.parentElement.classList.remove(".valid")
-    emailInput.parentElement.classList.add(".not-valid")
+    emailInput.parentElement.classList.remove("valid")
+    emailInput.parentElement.classList.add("not-valid")
     emailInput.parentElement.lastElementChild.style.display = "inline"
   }
   return /^[^@]+@[^@.]+\.[a-z]+$/i.test(email)
 }
 const isActivitiesSelected = function (total) {
   if (total > 0) {
-    activitiesFieldset.classList.add(".valid")
-    activitiesFieldset.classList.remove(".not-valid")
+    activitiesFieldset.classList.add("valid")
+    activitiesFieldset.classList.remove("not-valid")
     activitiesFieldset.lastElementChild.style.display = "none"
   } else {
-    activitiesFieldset.classList.remove(".valid")
-    activitiesFieldset.classList.add(".not-valid")
+    activitiesFieldset.classList.remove("valid")
+    activitiesFieldset.classList.add("not-valid")
     activitiesFieldset.lastElementChild.style.display = "block"
   }
   return total > 0
 }
 const isCreditCardNumValid = function (creditcardNum) {
-  if (/^\d{13,16}$/.test(parseInt(creditcardNum))) {
-    creditcardInput.parentElement.classList.add(".valid")
-    creditcardInput.parentElement.classList.remove(".not-valid")
+  if (/^\d{13,16}$/.test(creditcardNum)) {
+    creditcardInput.parentElement.classList.add("valid")
+    creditcardInput.parentElement.classList.remove("not-valid")
     creditcardInput.parentElement.lastElementChild.style.display = "none"
   } else {
-    creditcardInput.parentElement.classList.remove(".valid")
-    creditcardInput.parentElement.classList.add(".not-valid")
+    creditcardInput.parentElement.classList.remove("valid")
+    creditcardInput.parentElement.classList.add("not-valid")
     creditcardInput.parentElement.lastElementChild.style.display = "inline"
   }
-  return /^\d{13,16}$/.test(parseInt(creditcardNum))
+  return /^\d{13,16}$/.test(creditcardNum)
 }
 const isZipCodeValid = function (zipcode) {
-  if (/^\d{5}$/.test(parseInt(zipcode))) {
-    zipInput.parentElement.classList.add(".valid")
-    zipInput.parentElement.classList.remove(".not-valid")
+  if (/^\d{5}$/.test(zipcode)) {
+    zipInput.parentElement.classList.add("valid")
+    zipInput.parentElement.classList.remove("not-valid")
     zipInput.parentElement.lastElementChild.style.display = "none"
   } else {
-    zipInput.parentElement.classList.remove(".valid")
-    zipInput.parentElement.classList.add(".not-valid")
+    zipInput.parentElement.classList.remove("valid")
+    zipInput.parentElement.classList.add("not-valid")
     zipInput.parentElement.lastElementChild.style.display = "inline"
   }
-  return /^\d{5}$/.test(parseInt(zipcode))
+  return /^\d{5}$/.test(zipcode)
 }
 const isCVVValid = function (cvv) {
-  if (/^\d{3}$/.test(parseInt(cvv))) {
-    cvvInput.parentElement.classList.add(".valid")
-    cvvInput.parentElement.classList.remove(".not-valid")
+  if (/^\d{3}$/.test(cvv)) {
+    cvvInput.parentElement.classList.add("valid")
+    cvvInput.parentElement.classList.remove("not-valid")
     cvvInput.parentElement.lastElementChild.style.display = "none"
   } else {
-    cvvInput.parentElement.classList.remove(".valid")
-    cvvInput.parentElement.classList.add(".not-valid")
+    cvvInput.parentElement.classList.remove("valid")
+    cvvInput.parentElement.classList.add("not-valid")
     cvvInput.parentElement.lastElementChild.style.display = "inline"
   }
-  return /^\d{3}$/.test(parseInt(cvv))
+  return /^\d{3}$/.test(cvv)
 }
 
 const isCreditCardValid = function () {
